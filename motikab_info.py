@@ -2,6 +2,9 @@
 import selenium # type: ignore
 import os
 from selenium import webdriver # type: ignore
+from selenium.webdriver import ChromeOptions
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By # type: ignore
 from time import sleep
 
@@ -12,9 +15,13 @@ email_money_t = os.environ["MONEY_TREE_EMAIL"]
 pass_money_t = os.environ["MONEY_TREE_PASS"]
 
 options = webdriver.ChromeOptions()
-#options.add_argument('-headless')
 
-browser = webdriver.Chrome(options=options)
+#TODO: Switch this option usgin args
+# options.add_argument('-headless')
+
+serv = Service(ChromeDriverManager().install())
+
+browser = webdriver.Chrome(service=serv, options=options)
 
 # ---------Nomura Employee Stock Site-------
 browser.get("https://www.e-plan.nomura.co.jp/login/index.html")
@@ -78,7 +85,7 @@ zandaka_button_element = browser.find_element(by=By.XPATH, value='//*[@id="mt-we
 zandaka_button_element.click()
 sleep(1.0)
 
-#Click "Sonota"
+#Click "その他"
 other_in_list_element= browser.find_element(by=By.XPATH, value='//*[@id="mt-webapp"]//*[contains(text(), "その他")]')
 other_in_list_element.click()
 sleep(1.0)
