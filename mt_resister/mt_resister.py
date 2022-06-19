@@ -1,8 +1,6 @@
 import argparse
 import getpass
-import imp
 import os
-from mimetypes import init
 from os.path import dirname, join
 
 import dotenv

@@ -19,7 +19,7 @@ def create_browser(headless:bool = False)->None:
 
     return webdriver.Chrome(service=serv, options=options)
 
-def login_monery_tree(browser:selenium.webdriver.chrome.webdriver.WebDriver):
+def login_money_tree(browser:selenium.webdriver.chrome.webdriver.WebDriver):
     try:
         email = os.environ["MONEY_TREE_EMAIL"]
         password = os.environ["MONEY_TREE_PASS"]
@@ -29,7 +29,7 @@ def login_monery_tree(browser:selenium.webdriver.chrome.webdriver.WebDriver):
     try:
         # Log in to Money Tree
         browser.get("https://app.getmoneytree.com/login")
-        sleep(5.0)
+        sleep(3.0)
 
         mt_email_input = browser.find_element(by=By.NAME, value="guest[email]")
         mt_email_input.send_keys(email)
@@ -41,7 +41,7 @@ def login_monery_tree(browser:selenium.webdriver.chrome.webdriver.WebDriver):
         mt_login_button.submit()
 
         # Wait while process is completed
-        sleep(10.0)
+        sleep(5.0)
     except Exception as e:
         raise e
 

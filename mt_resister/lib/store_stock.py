@@ -5,7 +5,7 @@ from time import sleep
 import selenium
 from selenium.webdriver.common.by import By  # type: ignore
 
-from .manage_browser import login_monery_tree
+from .manage_browser import login_money_tree
 
 
 def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
@@ -60,7 +60,7 @@ def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
         sleep(3.0)
 
         # Log in to Money Tree
-        login_monery_tree(browser)
+        login_money_tree(browser)
 
         # click "Kouza zandaka"
         zandaka_button_element = browser.find_element(by=By.XPATH, value='//*[@id="mt-webapp"]//*[contains(text(), "口座残高")]')
@@ -91,4 +91,4 @@ def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
         update_element = browser.find_element(by=By.CSS_SELECTOR, value=".update.ng-scope")
         update_element.click()
     except Exception as e:
-        raise e
+        raise 
