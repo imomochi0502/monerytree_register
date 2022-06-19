@@ -1,11 +1,14 @@
 import argparse
 import getpass
+import imp
 import os
 from mimetypes import init
 from os.path import dirname, join
 
 import dotenv
 from dotenv import load_dotenv
+
+from .lib import store_paypay, store_stock
 
 
 def set_dotenv(path:str):
@@ -25,15 +28,6 @@ def set_dotenv(path:str):
     with open(path, "w", encoding="utf-8") as f:
         f.write(text_dotenv)
 
-def store_stock():
-    print("stock")
-    return
-
-def store_paypay():
-    print("paypay")
-    
-    return 
-
 def main_exec(args: argparse.Namespace):
     args_dict = vars(args)
     store = args_dict.get("store").lower()
@@ -42,16 +36,18 @@ def main_exec(args: argparse.Namespace):
         raise ValueError("The specified 'store' target does not exist.")
     
     if store == "stock":
-        store_stock()
+        store_stock.store()
     elif store == "paypay":
-        store_paypay()
+        store_paypay.store()
     
 
 def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--init", action="store_true", help="")
+    parser.add_argument("--headless", action="store_true")
     parser.add_argument("--store", help="[stock] or [paypay]", default="stock", type=str)
+    
     args = parser.parse_args()
 
     dotenv_path = join(dirname(__file__), '.env')
