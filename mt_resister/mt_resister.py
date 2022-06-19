@@ -31,6 +31,7 @@ def store_stock():
 
 def store_paypay():
     print("paypay")
+    
     return 
 
 def main_exec(args: argparse.Namespace):
@@ -68,6 +69,3 @@ def main():
     main_exec(args)
     
     return
-
-if __name__ == "__main__":
-    main()
