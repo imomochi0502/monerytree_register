@@ -8,7 +8,7 @@ from os.path import dirname, join
 import dotenv
 from dotenv import load_dotenv
 
-from .lib import store_paypay, store_stock
+from .lib import manage_browser, store_paypay, store_stock
 
 
 def set_dotenv(path:str):
@@ -35,10 +35,15 @@ def main_exec(args: argparse.Namespace):
     if store not in ["stock", "paypay"]:
         raise ValueError("The specified 'store' target does not exist.")
     
-    if store == "stock":
-        store_stock.store()
-    elif store == "paypay":
-        store_paypay.store()
+    browser = manage_browser.create_browser(headless=args_dict["headless"])
+
+    try:
+        if store == "stock":
+            store_stock.store(browser=browser)
+        elif store == "paypay":
+            store_paypay.store(browser=browser)
+    finally:
+        browser.close()
     
 
 def main():
