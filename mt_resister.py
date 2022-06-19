@@ -1,6 +1,7 @@
 import argparse
 import getpass
 import os
+from mimetypes import init
 from os.path import dirname, join
 
 import dotenv
@@ -10,10 +11,12 @@ from dotenv import load_dotenv
 def set_dotenv(path:str):
     print("Set .env")
     dotenv_dict = {}
-    dotenv_dict["MONEY_TREE_EMAIL"] = input(f"Enter money tree email ({dotenv_dict.get('MONEY_TREE_EMAIL')}) :")
+    dotenv_dict["MONEY_TREE_EMAIL"] = input(f"Enter money tree email :")
     dotenv_dict["MONEY_TREE_PASS"] = getpass.getpass("Enter password : ")
-    dotenv_dict["NOMURA_STOCK_EMAIL"] = input(f"Enter nomura stock email ({dotenv_dict.get('NOMURA_STOCK_EMAIL')}) :")
-    dotenv_dict["NOMURA_STOCK_PASS"] = getpass.getpass("Enter password : ")
+    dotenv_dict["NOMURA_STOCK_EMAIL"] = input(f"Enter nomura stock email :")
+    dotenv_dict["NOMURA_STOCK_PASS"] = getpass.getpass("Enter password :")
+    dotenv_dict["SPREAD_SHEET_KEY"] = input(f"Enter Spread Sheet key :")
+    dotenv_dict["GCP_AUTH_JSON"] = input(f"Enter Json file name for Authorization to GCP :")
 
     text_list = [f"{key}={val}" for key, val in dotenv_dict.items()]
     text_dotenv = "\n".join(text_list)
@@ -23,21 +26,31 @@ def set_dotenv(path:str):
         f.write(text_dotenv)
 
 def store_stock():
+    print("stock")
     return
 
 def store_paypay():
+    print("paypay")
     return 
 
-def main_exec(args):
+def main_exec(args: argparse.Namespace):
+    args_dict = vars(args)
+    store = args_dict.get("store").lower()
 
-    args_dict = args
+    if store not in ["stock", "paypay"]:
+        raise ValueError("The specified 'store' target does not exist.")
+    
+    if store == "stock":
+        store_stock()
+    elif store == "paypay":
+        store_paypay()
+    
 
 def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--init", action="store_true", help="")
-    parser.add_argument("--stock", action="store_true", help="stack value")
-    parser.add_argument("--paypay", action="store_true", help="paypay")
+    parser.add_argument("--store", help="[stock] or [paypay]", default="stock", type=str)
     args = parser.parse_args()
 
     dotenv_path = join(dirname(__file__), '.env')
