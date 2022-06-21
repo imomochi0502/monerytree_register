@@ -40,8 +40,20 @@ def login_money_tree(browser:selenium.webdriver.chrome.webdriver.WebDriver):
         mt_login_button = browser.find_element(by=By.CLASS_NAME, value="login-form-button")
         mt_login_button.submit()
 
+        print("Logined MoneryTree")
         # Wait while process is completed
         sleep(5.0)
     except Exception as e:
+        print("MoneyTree Login failer.")
         raise e
 
+def logout_money_tree(browser:selenium.webdriver.chrome.webdriver.WebDriver):
+    try:
+        mt_setting_element = browser.find_element(by=By.CLASS_NAME, value="icon-thin-cog")
+        mt_setting_element.click()
+        mt_logout_element = browser.find_element(by=By.CSS_SELECTOR, value=".logout.ng-scope")
+        mt_logout_element.click()
+        print("Logout MoneyTree")
+    except Exception as e:
+        print("MoneyTree Logout failer.")
+        raise e
