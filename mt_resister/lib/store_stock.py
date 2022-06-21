@@ -5,7 +5,7 @@ from time import sleep
 import selenium
 from selenium.webdriver.common.by import By  # type: ignore
 
-from .manage_browser import login_money_tree
+from .manage_browser import login_money_tree, logout_money_tree
 
 
 def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
@@ -83,6 +83,8 @@ def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
         exp_inc_switch_element = browser.find_element(by=By.CSS_SELECTOR, value=".icon-minus-circle.ng-scope")
         exp_inc_switch_element.click()
 
+        sleep(1.0)
+
         # input stock value
         banck_amount_element = browser.find_element(by=By.CLASS_NAME, value="input-amount")
         banck_amount_element.clear()
@@ -90,5 +92,12 @@ def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
 
         update_element = browser.find_element(by=By.CSS_SELECTOR, value=".update.ng-scope")
         update_element.click()
+        
+        sleep(1.0)
+
+        #log out
+        logout_money_tree(browser)
+        sleep(1.0)
+
     except Exception as e:
-        raise 
+        raise e
