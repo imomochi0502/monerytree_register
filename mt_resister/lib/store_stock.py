@@ -21,13 +21,13 @@ def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
     sleep(1.0)
 
     try:
-        mail = browser.find_element(by=By.NAME, value="m_login_mail_address")
-        password = browser.find_element(by=By.NAME, value="WEAPASS")
-        mail.clear()
-        password.clear()
+        mail_element = browser.find_element(by=By.NAME, value="m_login_mail_address")
+        password_element = browser.find_element(by=By.NAME, value="WEAPASS")
+        mail_element.clear()
+        password_element.clear()
 
-        mail.send_keys(email)
-        password.send_keys(password)
+        mail_element.send_keys(email)
+        password_element.send_keys(password)
 
         nomura_login = browser.find_element(by=By.CLASS_NAME, value="m_login_btn_01")
         

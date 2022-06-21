@@ -1,4 +1,4 @@
 .env
 __pycache__
 mt_resister/__pycache__
-GCP_Auth
+mt_resister/GCP_Auth/*
