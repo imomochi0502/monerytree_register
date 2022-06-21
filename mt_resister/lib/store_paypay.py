@@ -102,7 +102,8 @@ def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
     json_file_name = os.environ["GCP_AUTH_JSON"] 
     key = os.environ["SPREAD_SHEET_KEY"]
 
-    jsonf = join(os.path.abspath(dirname(__file__)), f"GCP_Auth/{json_file_name}")
+    file_path = os.path.dirname(os.path.abspath(__file__))
+    jsonf = join(os.path.abspath(join(file_path, "..")), f"GCP_Auth/{json_file_name}")
 
     try:
         ws = connect_gspread(jsonf=jsonf, key=key)
