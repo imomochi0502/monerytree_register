@@ -10,7 +10,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By  # type: ignore
 from webdriver_manager.chrome import ChromeDriverManager
 
-options = webdriver.ChromeOptions()
+options = ChromeOptions()
 serv = Service(ChromeDriverManager().install())
 
 def create_browser(headless:bool = False)->None:
