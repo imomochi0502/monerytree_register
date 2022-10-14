@@ -1,7 +1,6 @@
 import datetime as dt
-import json
 import os
-from os.path import dirname, join
+from os.path import join
 from time import sleep
 
 import selenium

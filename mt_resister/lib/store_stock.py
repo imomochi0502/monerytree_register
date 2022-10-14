@@ -1,5 +1,4 @@
 import os
-from re import I
 from time import sleep
 
 import selenium

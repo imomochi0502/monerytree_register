@@ -3,7 +3,6 @@ import getpass
 import os
 from os.path import dirname, join
 
-import dotenv
 from dotenv import load_dotenv
 
 from .lib import manage_browser, store_paypay, store_stock
