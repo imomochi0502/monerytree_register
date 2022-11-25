@@ -29,9 +29,9 @@ The json file which include Auth information is saved at *GCP_Auth* directory.
 With GUI (no headless)
 > cd  "This package directory"
 
-> python -m mt_resister --store [paypay | stock]
+> python -m mt_register --store [paypay | stock]
 
 No use GUI (headless)
 > cd "This package directory"
 
-> python -m mt_resister --store [paypay | stock] --headless
+> python -m mt_register --store [paypay | stock] --headless
