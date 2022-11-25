@@ -34,4 +34,4 @@ With GUI (no headless)
 No use GUI (headless)
 > cd "This package directory"
 
-> python -m mt_resister --store [paypay | stock]
+> python -m mt_resister --store [paypay | stock] --headless
