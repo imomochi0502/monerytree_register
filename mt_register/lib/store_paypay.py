@@ -95,7 +95,7 @@ def input_cash_log(browser, dt_now, store_info):
         raise e
 
 
-def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
+def store(browser: selenium.webdriver.chrome.webdriver.WebDriver): # type: ignore
     dt_now = dt.date.today()
 
     json_file_name = os.environ["GCP_AUTH_JSON"] 

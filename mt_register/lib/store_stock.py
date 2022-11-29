@@ -7,14 +7,14 @@ from selenium.webdriver.common.by import By  # type: ignore
 from .manage_browser import login_money_tree, logout_money_tree
 
 
-def store(browser:selenium.webdriver.chrome.webdriver.WebDriver):
+def store(browser: selenium.webdriver.chrome.webdriver.WebDriver): # type: ignore
 
     #login_nomura(browser)
     try:
         email = os.environ["NOMURA_STOCK_EMAIL"]
         password = os.environ["NOMURA_STOCK_PASS"]
     except:
-        KeyError("Email and password are not found.")
+        raise KeyError("Email and password are not found.")
 
     browser.get("https://www.e-plan.nomura.co.jp/login/index.html")
     sleep(1.0)

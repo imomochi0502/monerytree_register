@@ -27,7 +27,7 @@ def set_dotenv(path:str):
 
 def main_exec(args: argparse.Namespace):
     args_dict = vars(args)
-    store = args_dict.get("store").lower()
+    store = args_dict.get("store", "").lower()
 
     if store not in ["stock", "paypay"]:
         raise ValueError("The specified 'store' target does not exist.")
