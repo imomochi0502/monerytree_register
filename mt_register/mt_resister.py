@@ -27,28 +27,32 @@ def set_dotenv(path:str):
 
 def main_exec(args: argparse.Namespace):
     args_dict = vars(args)
-    store = args_dict.get("store").lower()
+    store = args_dict.get("store", "").lower()
 
-    if store not in ["stock", "paypay"]:
+    if store not in ["stock", "paypay", "cash"]:
         raise ValueError("The specified 'store' target does not exist.")
     
     browser = manage_browser.create_browser(headless=args_dict["headless"])
-
     try:
         if store == "stock":
             store_stock.store(browser=browser)
         elif store == "paypay":
-            store_paypay.store(browser=browser)
+            store_paypay.store(browser=browser, regist_name="paypay")
+        elif store == "cash":
+            store_paypay.store(browser=browser, regist_name="cash")
+    except Exception as e:
+        print(e)
     finally:
         browser.close()
     
+    return
 
 def main():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--init", action="store_true", help="")
     parser.add_argument("--headless", action="store_true")
-    parser.add_argument("--store", help="[stock] or [paypay]", default="stock", type=str)
+    parser.add_argument("--store", help="[stock] or [paypay] or [cash]", default="stock", type=str)
     
     args = parser.parse_args()
 

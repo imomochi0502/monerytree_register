@@ -6,6 +6,7 @@
 - webdriver_manager
 - oauth2client
 - httplib2
+- python-dotenv
 # Set up
 ## Set .env
 In .env, please set money-tree / nomura's account information, spread-sheet-key and  Google clout auth json information.
@@ -29,9 +30,9 @@ The json file which include Auth information is saved at *GCP_Auth* directory.
 With GUI (no headless)
 > cd  "This package directory"
 
-> python -m mt_resister --store [paypay | stock]
+> python -m mt_register --store [paypay | stock | cash]
 
 No use GUI (headless)
 > cd "This package directory"
 
-> python -m mt_resister --store [paypay | stock] --headless
+> python -m mt_register --store [paypay | stock | cash] --headless

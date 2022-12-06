@@ -13,18 +13,18 @@ from webdriver_manager.chrome import ChromeDriverManager
 options = ChromeOptions()
 serv = Service(ChromeDriverManager().install())
 
-def create_browser(headless:bool = False)->None:
+def create_browser(headless:bool = False):
     if headless:
         options.add_argument("-headless")
 
-    return webdriver.Chrome(service=serv, options=options)
+    return webdriver.Chrome(service=serv, options=options) # type: ignore
 
-def login_money_tree(browser:selenium.webdriver.chrome.webdriver.WebDriver):
+def login_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver): # type: ignore
     try:
         email = os.environ["MONEY_TREE_EMAIL"]
         password = os.environ["MONEY_TREE_PASS"]
     except:
-        KeyError("Email and password are not found.")
+        raise KeyError("Email and password are not found.")
     
     try:
         # Log in to Money Tree
@@ -47,7 +47,7 @@ def login_money_tree(browser:selenium.webdriver.chrome.webdriver.WebDriver):
         print("MoneyTree Login failer.")
         raise e
 
-def logout_money_tree(browser:selenium.webdriver.chrome.webdriver.WebDriver):
+def logout_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver): # type: ignore
     try:
         mt_setting_element = browser.find_element(by=By.CLASS_NAME, value="icon-thin-cog")
         mt_setting_element.click()
