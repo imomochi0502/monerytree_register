@@ -10,22 +10,24 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By  # type: ignore
 from webdriver_manager.chrome import ChromeDriverManager
 
-options = ChromeOptions()
+chrome_options = ChromeOptions()
 serv = Service(ChromeDriverManager().install())
 
-def create_browser(headless:bool = False):
+
+def create_browser(headless: bool = False):
     if headless:
         options.add_argument("-headless")
 
-    return webdriver.Chrome(service=serv, options=options) # type: ignore
+    return webdriver.Chrome(service=serv, options=chrome_options)  # type: ignore # noqa
 
-def login_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver): # type: ignore
+
+def login_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver):  # type: ignore
     try:
         email = os.environ["MONEY_TREE_EMAIL"]
         password = os.environ["MONEY_TREE_PASS"]
     except:
         raise KeyError("Email and password are not found.")
-    
+
     try:
         # Log in to Money Tree
         browser.get("https://app.getmoneytree.com/login")
@@ -37,7 +39,9 @@ def login_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver): # 
         mt_pass_input = browser.find_element(by=By.NAME, value="guest[password]")
         mt_pass_input.send_keys(password)
 
-        mt_login_button = browser.find_element(by=By.CLASS_NAME, value="login-form-button")
+        mt_login_button = browser.find_element(
+            by=By.CLASS_NAME, value="login-form-button"
+        )
         mt_login_button.submit()
 
         print("Logined MoneryTree")
@@ -47,11 +51,16 @@ def login_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver): # 
         print("MoneyTree Login failer.")
         raise e
 
-def logout_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver): # type: ignore
+
+def logout_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver):  # type: ignore
     try:
-        mt_setting_element = browser.find_element(by=By.CLASS_NAME, value="icon-thin-cog")
+        mt_setting_element = browser.find_element(
+            by=By.CLASS_NAME, value="icon-thin-cog"
+        )
         mt_setting_element.click()
-        mt_logout_element = browser.find_element(by=By.CSS_SELECTOR, value=".logout.ng-scope")
+        mt_logout_element = browser.find_element(
+            by=By.CSS_SELECTOR, value=".logout.ng-scope"
+        )
         mt_logout_element.click()
         print("Logout MoneyTree")
     except Exception as e:
