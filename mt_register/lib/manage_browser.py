@@ -16,7 +16,7 @@ serv = Service(ChromeDriverManager().install())
 
 def create_browser(headless: bool = False):
     if headless:
-        options.add_argument("-headless")
+        chrome_options.add_argument("-headless")
 
     return webdriver.Chrome(service=serv, options=chrome_options)  # type: ignore # noqa
 
