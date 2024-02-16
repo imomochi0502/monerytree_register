@@ -8,7 +8,6 @@ from .manage_browser import login_money_tree, logout_money_tree
 
 
 def store(browser: selenium.webdriver.chrome.webdriver.WebDriver):  # type: ignore # noqa
-    # login_nomura(browser)
     try:
         email = os.environ["NOMURA_STOCK_EMAIL"]
         password = os.environ["NOMURA_STOCK_PASS"]
