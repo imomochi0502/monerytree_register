@@ -73,20 +73,20 @@ def store(browser: selenium.webdriver.chrome.webdriver.WebDriver):  # type: igno
             by=By.XPATH, value='//*[@id="mt-webapp"]//*[contains(text(), "口座残高")]'
         )
         zandaka_button_element.click()
-        sleep(1.0)
+        sleep(2.0)
 
         # Click "Sonota"
         other_in_list_element = browser.find_element(
             by=By.XPATH, value='//*[@id="mt-webapp"]//*[contains(text(), "その他")]'
         )
         other_in_list_element.click()
-        sleep(1.0)
+        sleep(2.0)
 
         target_category_element = browser.find_element(
             by=By.XPATH, value='//*[@id="mt-webapp"]//*[contains(text(), "持株会")]'
         )
         target_category_element.click()
-        sleep(1.0)
+        sleep(2.0)
 
         bank_value_element = browser.find_element(
             by=By.CSS_SELECTOR, value=".balance.ng-binding"
@@ -98,7 +98,7 @@ def store(browser: selenium.webdriver.chrome.webdriver.WebDriver):  # type: igno
         )
         exp_inc_switch_element.click()
 
-        sleep(1.0)
+        sleep(2.0)
 
         # input stock value
         banck_amount_element = browser.find_element(
@@ -112,7 +112,7 @@ def store(browser: selenium.webdriver.chrome.webdriver.WebDriver):  # type: igno
         )
         update_element.click()
 
-        sleep(1.0)
+        sleep(2.0)
 
         # log out
         logout_money_tree(browser)
