@@ -3,7 +3,6 @@ import os
 from time import sleep
 
 import selenium  # type: ignore
-from requests import options
 from selenium import webdriver  # type: ignore
 from selenium.webdriver import ChromeOptions
 from selenium.webdriver.chrome.service import Service
@@ -25,7 +24,8 @@ def login_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver):  #
     try:
         email = os.environ["MONEY_TREE_EMAIL"]
         password = os.environ["MONEY_TREE_PASS"]
-    except:
+    except Exception as e:
+        print(e)
         raise KeyError("Email and password are not found.")
 
     try:
@@ -46,7 +46,8 @@ def login_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver):  #
 
         print("Logined MoneryTree")
         # Wait while process is completed
-        sleep(5.0)
+        # サインインからコンテンツ取得までに時間を要する場合がある。長めに設定
+        sleep(15.0)
     except Exception as e:
         print("MoneyTree Login failer.")
         raise e
