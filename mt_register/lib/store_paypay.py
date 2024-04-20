@@ -127,6 +127,7 @@ def input_cash_log(browser, dt_now, store_info):
             by=By.CLASS_NAME, value="modal-header-done-text"
         )
         target_element.click()
+        sleep(0.5)
 
     except Exception as e:
         raise e

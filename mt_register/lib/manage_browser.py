@@ -47,7 +47,7 @@ def login_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver):  #
         print("Logined MoneryTree")
         # Wait while process is completed
         # サインインからコンテンツ取得までに時間を要する場合がある。長めに設定
-        sleep(15.0)
+        sleep(60.0)
     except Exception as e:
         print("MoneyTree Login failer.")
         raise e
@@ -59,6 +59,7 @@ def logout_money_tree(browser: selenium.webdriver.chrome.webdriver.WebDriver):  
             by=By.CLASS_NAME, value="icon-thin-cog"
         )
         mt_setting_element.click()
+        sleep(3.0)
         mt_logout_element = browser.find_element(
             by=By.CSS_SELECTOR, value=".logout.ng-scope"
         )
