@@ -10,7 +10,16 @@ from selenium.webdriver.common.by import By  # type: ignore
 from webdriver_manager.chrome import ChromeDriverManager
 
 chrome_options = ChromeOptions()
-serv = Service(ChromeDriverManager().install())
+# This fixes is temporary.
+# webdriver-manager's bugs will be resolved, deploy master branche's code.
+webdriver_path = ChromeDriverManager().install()
+if webdriver_path.find("THIRD_PARTY_NOTICES"):
+    print("===== Execute temporary fixes ======")
+    webdriver_dir_path = os.path.dirname(webdriver_path)
+    webdriver_path = os.path.join(webdriver_dir_path, 'chromedriver')
+    # Change premission 644 to 744 at ":~/.wdm/drivers/chromedriver/linux64/127.0.6533.72/chromedriver-linux64"
+
+serv = Service(executable_path=webdriver_path)
 
 
 def create_browser(headless: bool = False):

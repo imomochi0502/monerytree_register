@@ -36,6 +36,7 @@ def main_exec(args: argparse.Namespace):
         raise ValueError("The specified 'store' target does not exist.")
 
     browser = manage_browser.create_browser(headless=args_dict["headless"])
+    print("Browser Creation Success")
     try:
         if store == "stock":
             store_stock.store(browser=browser)
